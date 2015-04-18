@@ -1,8 +1,8 @@
 class Commander
   def initialize
     @rover = Rover.new(0,0,"N")
-    @rover.x = 1
-    @rover.y = 2
+    @rover.x = 5
+    @rover.y = 1
     @rover.o = "N"
     prompt_input
   end
@@ -27,6 +27,10 @@ class Commander
             print "|"
           else
             print "|_"
+          end
+
+          if c == @rover.x-1 && r == @rover.y
+            print "*"
           end
 
         end
