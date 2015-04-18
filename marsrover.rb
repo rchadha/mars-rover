@@ -5,14 +5,34 @@ class Commander
   end
 
   def prompt_input
-    r = 9..0
+    coordinates = 9
+    range = 9..0
 
-    (r.first).downto(r.last).each {
-        |i| print i
-        for j in 0..9 do
-          print " |_|"
+    (range.first).downto(range.last).each { |r|
+      print r
+      if r == 0
+        for j in 1..9 do
+          if j == 1
+            print " #{j} "
+          else
+            print "#{j} "
+          end
+
         end
-      print "\n"
+      else
+        for c in 0..9 do
+          if c == 9
+            print "|"
+          else
+            print "|_"
+          end
+
+        end
+
+      end
+
+
+        print "\n"
     }
 
     # for i in 1..9 do
