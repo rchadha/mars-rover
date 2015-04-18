@@ -1,11 +1,13 @@
 class Commander
   def initialize
     @rover = Rover.new(0,0,"N")
+    @rover.x = 1
+    @rover.y = 2
+    @rover.o = "N"
     prompt_input
   end
 
   def prompt_input
-    coordinates = 9
     range = 9..0
 
     (range.first).downto(range.last).each { |r|
@@ -55,6 +57,7 @@ class Rover
     @y = y.to_i
     @o = o.capitalize
   end
+  attr_accessor :x, :y, :o
 
   def position
     puts "The rover is at position #{@x}, #{@y} and its orientation is #{@o}."
