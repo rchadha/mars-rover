@@ -5,15 +5,15 @@ class Commander
     @rover.x = 1
     @rover.y = 2
     @rover.o = "N"
-    prompt_input
     @rover.read_instruction("LMLMLMLMM")
+    prompt_input
     @rover.position
 
     @rover.x = 3
     @rover.y = 3
     @rover.o = "E"
-    prompt_input
     @rover.read_instruction("MMRMMRMRRM")
+    prompt_input
     @rover.position
   end
 
