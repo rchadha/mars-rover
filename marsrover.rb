@@ -1,10 +1,20 @@
 class Commander
   def initialize
     @rover = Rover.new(0,0,"N")
-    @rover.x = 5
-    @rover.y = 1
+
+    @rover.x = 1
+    @rover.y = 2
     @rover.o = "N"
     prompt_input
+    @rover.read_instruction("LMLMLMLMM")
+    @rover.position
+
+    @rover.x = 3
+    @rover.y = 3
+    @rover.o = "E"
+    prompt_input
+    @rover.read_instruction("MMRMMRMRRM")
+    @rover.position
   end
 
   def prompt_input
@@ -98,7 +108,7 @@ class Rover
       i = i.capitalize
       turn(i) if i == "L" || i == "R"
       move_forward if i == "M"
-      position
+
     end
   end
 
