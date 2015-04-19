@@ -1,29 +1,42 @@
 class Commander
   def initialize
     @rover = Rover.new(0,0,"N")
-
-    @rover.x = 1
-    @rover.y = 2
-    @rover.o = "N"
-    @rover.read_instruction("LMLMLMLMM")
     prompt_input
-    @rover.position
 
-    @rover.x = 3
-    @rover.y = 3
-    @rover.o = "E"
-    @rover.read_instruction("MMRMMRMRRM")
-    prompt_input
-    @rover.position
+    # @rover.x = 1
+    # @rover.y = 2
+    # @rover.o = "N"
+    # @rover.read_instruction("LMLMLMLMM")
+    # prompt_input
+    # @rover.position
+    #
+    # @rover.x = 3
+    # @rover.y = 3
+    # @rover.o = "E"
+    # @rover.read_instruction("MMRMMRMRRM")
+    # prompt_input
+    # @rover.position
   end
 
   def prompt_input
-    range = 9..0
+    puts "Enter plateau size:"
+    draw_plateau("2 2")
+
+    # @rover.read_instruction(instructions)
+  end
+
+  def draw_plateau(plateau_size)
+
+    #Split the input
+    r = plateau_size.split
+    rows = r[0].to_i
+    columns = r[1].to_i
+    range = rows..0
 
     (range.first).downto(range.last).each { |r|
       print r
       if r == 0
-        for j in 1..9 do
+        for j in 1..columns do
           if j == 1
             print " #{j} "
           else
@@ -32,8 +45,8 @@ class Commander
 
         end
       else
-        for c in 0..9 do
-          if c == 9
+        for c in 0..columns do
+          if c == columns
             print "|"
           else
             print "|_"
@@ -48,21 +61,12 @@ class Commander
       end
 
 
-        print "\n"
+      print "\n"
     }
 
-    # for i in 1..9 do
-    #   print "#{i}"
-    #   for j in 1..9 do
-    #     print " |_|"
-    #   end
-    #   print "\n"
-    # end
-
-    # puts "Enter instructions:"
-    # instructions = gets.chomp
-    # @rover.read_instruction(instructions)
   end
+
+
 end
 
 class Rover
