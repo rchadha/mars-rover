@@ -2,10 +2,23 @@ class Commander
   def initialize
     print "Enter plateau size:"
     @plateau = Plateau.new(gets.chomp)
-    #TODO: remove rover obj
-    # @rover = Rover.new(0,0,"N")
+    #Place rover on plateau
+    @rover = Rover.new(0,0,"N")
+    @rover.position
 
+    print "Position the rover:"
+    @rover.set_position(gets.chomp)
+    print "Instructions for the rover to move and turn:"
+    @rover.read_instruction(gets.chomp)
+    @rover.position
+    @plateau.draw_plateau(@rover)
 
+    print "Position the rover:"
+    @rover.set_position(gets.chomp)
+    print "Instructions for the rover to move and turn:"
+    @rover.read_instruction(gets.chomp)
+    @rover.position
+    @plateau.draw_plateau(@rover)
 
     # @rover.x = 1
     # @rover.y = 2
@@ -27,18 +40,18 @@ end
 
 class Plateau
   def initialize (plateau_size)
-
-    draw_plateau(plateau_size)
-
+    coordinates = plateau_size.split
+    @x = coordinates[0].to_i
+    @y = coordinates[1].to_i
   end
+  attr_accessor :x, :y
 
-  def draw_plateau(plateau_size)
-    system("clear")
 
-    #Split the input
-    r = plateau_size.split
-    rows = r[0].to_i
-    columns = r[1].to_i
+  def draw_plateau(rover)
+    # system("clear")
+
+    rows = @y
+    columns = @x
 
     puts "Plateau of #{rows}X#{columns} is created..."
 
@@ -63,9 +76,9 @@ class Plateau
             print "|_"
           end
 
-          # if c == @rover.x-1 && r == @rover.y
-          #   print "*"
-          # end
+          if c == rover.x-1 && r == rover.y
+            print "*"
+          end
 
         end
 
@@ -89,6 +102,14 @@ class Rover
 
   def position
     puts "The rover is at position #{@x}, #{@y} and its orientation is #{@o}."
+  end
+
+  def set_position(position)
+    p = position.split
+    @x = p[0].to_i
+    @y = p[1].to_i
+    @o = p[2]
+
   end
 
   def move_forward
