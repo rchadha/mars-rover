@@ -1,7 +1,11 @@
 class Commander
   def initialize
-    @rover = Rover.new(0,0,"N")
-    prompt_input
+    print "Enter plateau size:"
+    @plateau = Plateau.new(gets.chomp)
+    #TODO: remove rover obj
+    # @rover = Rover.new(0,0,"N")
+
+
 
     # @rover.x = 1
     # @rover.y = 2
@@ -18,19 +22,26 @@ class Commander
     # @rover.position
   end
 
-  def prompt_input
-    puts "Enter plateau size:"
-    draw_plateau("2 2")
 
-    # @rover.read_instruction(instructions)
+end
+
+class Plateau
+  def initialize (plateau_size)
+
+    draw_plateau(plateau_size)
+
   end
 
   def draw_plateau(plateau_size)
+    system("clear")
 
     #Split the input
     r = plateau_size.split
     rows = r[0].to_i
     columns = r[1].to_i
+
+    puts "Plateau of #{rows}X#{columns} is created..."
+
     range = rows..0
 
     (range.first).downto(range.last).each { |r|
@@ -52,9 +63,9 @@ class Commander
             print "|_"
           end
 
-          if c == @rover.x-1 && r == @rover.y
-            print "*"
-          end
+          # if c == @rover.x-1 && r == @rover.y
+          #   print "*"
+          # end
 
         end
 
@@ -65,7 +76,6 @@ class Commander
     }
 
   end
-
 
 end
 
