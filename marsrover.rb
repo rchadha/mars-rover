@@ -1,24 +1,25 @@
 class Commander
   def initialize
     print "Enter plateau size:"
-    @plateau = Plateau.new(gets.chomp)
+    @plateau = Plateau.new("9 9")
     #Place rover on plateau
     @rover = Rover.new(0,0,"N")
     @rover.position
+    @plateau.position_rover_on_plateau(@rover)
 
     print "Position the rover:"
-    @rover.set_position(gets.chomp)
+    @rover.set_position("1 2 N")
     print "Instructions for the rover to move and turn:"
-    @rover.read_instruction(gets.chomp)
+    @rover.read_instruction("LMLMLMLMM")
     @rover.position
-    @plateau.draw_plateau(@rover)
+    @plateau.position_rover_on_plateau(@rover)
 
-    print "Position the rover:"
-    @rover.set_position(gets.chomp)
-    print "Instructions for the rover to move and turn:"
-    @rover.read_instruction(gets.chomp)
-    @rover.position
-    @plateau.draw_plateau(@rover)
+    # print "Position the rover:"
+    # @rover.set_position(gets.chomp)
+    # print "Instructions for the rover to move and turn:"
+    # @rover.read_instruction(gets.chomp)
+    # @rover.position
+    # @plateau.position_rover_on_plateau(@rover)
 
     # @rover.x = 1
     # @rover.y = 2
@@ -47,13 +48,11 @@ class Plateau
   attr_accessor :x, :y
 
 
-  def draw_plateau(rover)
+  def position_rover_on_plateau(rover)
     # system("clear")
 
     rows = @y
     columns = @x
-
-    puts "Plateau of #{rows}X#{columns} is created..."
 
     range = rows..0
 
@@ -70,6 +69,7 @@ class Plateau
         end
       else
         for c in 0..columns do
+
           if c == columns
             print "|"
           else
@@ -77,7 +77,7 @@ class Plateau
           end
 
           if c == rover.x-1 && r == rover.y
-            print "*"
+            print "\033[5m\033[1m\033[32m*\033[0m"
           end
 
         end
@@ -90,6 +90,9 @@ class Plateau
 
   end
 
+  def green
+    "\033[32m*\033[0m"
+  end
 end
 
 class Rover
